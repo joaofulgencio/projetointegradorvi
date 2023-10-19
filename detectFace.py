@@ -1,3 +1,4 @@
+import keras
 from numpy import expand_dims
 from matplotlib import pyplot
 from PIL import Image
@@ -6,7 +7,6 @@ from mtcnn.mtcnn import MTCNN
 from keras_vggface.vggface import VGGFace
 from keras_vggface.utils import preprocess_input
 from keras_vggface.utils import decode_predictions
-
 
 def extract_cropped_face_from_image(face):
     mtcnn_detect_face = MTCNN()
@@ -21,7 +21,6 @@ def resizeFaceToModelSize(face, required_size=(224, 224)):
     faceRisezed = faceRisezed.resize(required_size)
     return faceRisezed
 
-
 def convertToFaceArray(resizedFace):
     return asarray(resizedFace)
 
@@ -34,7 +33,7 @@ def extract_face(face):
     faceArray = convertToFaceArray(resized_face)
     return faceArray
 
-face = loadFaceFromFile('images/britney.jpeg')
+face = loadFaceFromFile('images/david.jpeg')
 pixels = extract_face(face)
 pixels = pixels.astype('float32')
 samples = expand_dims(pixels, axis=0)
